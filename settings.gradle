@@ -1,2 +1,3 @@
 include 'basic:basic-demo'
 include 'streams:streams-demo'
+include 'common:protocol'
