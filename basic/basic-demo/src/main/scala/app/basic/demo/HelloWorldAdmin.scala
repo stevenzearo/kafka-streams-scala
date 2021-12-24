@@ -11,14 +11,15 @@ object HelloWorldAdmin {
     propertiesMap.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094")
     val properties = new Properties()
     properties.putAll(propertiesMap)
-    val admin = AdminClient.create(properties)
 
+    val testTopic = new NewTopic("a-good-test", 3, Short.box(3))
+
+    val admin = AdminClient.create(properties)
     try {
-      val testTopic = new NewTopic("a-good-test", 3, Short.box(3))
       val createTopicsResult = admin.createTopics(Collections.singletonList(testTopic))
       createTopicsResult.values().forEach((k, v) => {
         v.whenComplete((v, e) => {
-          if (Option.apply(e).nonEmpty) e.printStackTrace()
+          if (Option(e).nonEmpty) e.printStackTrace()
           println(s"Successfully create topic:$k")
         })
       })

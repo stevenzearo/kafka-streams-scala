@@ -12,10 +12,10 @@ object KCustomerPurchaseAdminApplication {
     propertiesMap.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094")
     val properties = new Properties()
     properties.putAll(propertiesMap)
-    val admin = AdminClient.create(properties)
 
     val topics = List(KafkaTopics.CUSTOMER_PURCHASE_LINE, KafkaTopics.CUSTOMER_PURCHASE_SUMMARY)
 
+    val admin = AdminClient.create(properties)
     try {
       val newTopics: util.Collection[NewTopic] = new util.ArrayList()
       topics.foreach(s => newTopics.add(new NewTopic(s, 3, Short.box(3))))

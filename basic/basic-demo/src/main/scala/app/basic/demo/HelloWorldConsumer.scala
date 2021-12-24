@@ -18,20 +18,21 @@ object HelloWorldConsumer {
     value.put(ConsumerConfig.GROUP_ID_CONFIG, "test-1")
     val properties = new Properties()
     properties.putAll(value)
+
     val consumer = new KafkaConsumer[String, String](properties)
     val reblanceListener = new ConsumerRebalanceListenerImpl[String, String](consumer)
-    consumer.subscribe(Collections.singletonList("test"), reblanceListener)
     try {
+      consumer.subscribe(Collections.singletonList("test"), reblanceListener)
       while (true) {
         val records: ConsumerRecords[String, String] = consumer.poll(Duration.ofMillis(3000))
         records.forEach(r => {
           println(s"fetched record{ topic:${r.topic()}, partition:${r.partition()},key:${r.key()}, value:{${r.value()}, offset:${r.offset()}, timestamp:${r.timestamp()}}")
         })
         consumer.commitAsync((offsets: util.Map[TopicPartition, OffsetAndMetadata], exception: Exception) => {
-          offsets.forEach((k, v) => println(s"topic:${k.topic()}, offset:${v.offset()}"))
-          if (Option.apply(exception).nonEmpty) {
+          if (Option(exception).nonEmpty) {
             exception.printStackTrace()
           }
+          offsets.forEach((k, v) => println(s"topic:${k.topic()}, offset:${v.offset()}"))
         })
       }
     } finally {

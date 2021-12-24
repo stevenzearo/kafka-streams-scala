@@ -7,7 +7,7 @@ import java.util
 
 class ConsumerRebalanceListenerImpl[K, V](consumer: KafkaConsumer[K, V]) extends ConsumerRebalanceListener {
   var offset = 0 // should store in db, like zookeeper
-override def onPartitionsRevoked(partitions: util.Collection[TopicPartition]): Unit = {
+  override def onPartitionsRevoked(partitions: util.Collection[TopicPartition]): Unit = {
     println("partitions revoked!")
   }
 

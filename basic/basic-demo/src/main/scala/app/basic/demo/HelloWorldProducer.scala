@@ -15,13 +15,17 @@ object HelloWorldProducer {
     value.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer].getCanonicalName)
     val properties = new Properties()
     properties.putAll(value)
+
     val producer = new KafkaProducer[String, String](properties)
-    for (i <- 0 until 10) {
-      val msg = s"hello, world! $i"
-      val result: Future[RecordMetadata] = producer.send(new ProducerRecord[String, String]("test", msg))
-      val metadata: RecordMetadata = result.get(3, TimeUnit.SECONDS)
-      println(metadata.toString)
+    try {
+      for (i <- 0 until 10) {
+        val msg = s"hello, world! $i"
+        val result: Future[RecordMetadata] = producer.send(new ProducerRecord[String, String]("test", msg))
+        val metadata: RecordMetadata = result.get(3, TimeUnit.SECONDS)
+        println(metadata.toString)
+      }
+    } finally {
+      producer.close()
     }
-    producer.close()
   }
 }

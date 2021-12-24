@@ -26,11 +26,13 @@ object KStreamsCustomerPurchaseApplication {
     map.put(StreamsConfig.APPLICATION_ID_CONFIG, "yelling-application-0001")
     val properties = new Properties()
     properties.putAll(map)
+
     val streamsBuilder = new StreamsBuilder()
     streamsBuilder.stream(KafkaTopics.CUSTOMER_PURCHASE_LINE, Consumed.`with`(Serdes.stringSerde, Serdes.stringSerde))
       .mapValues(s => transferToSummary(s))
       .to(KafkaTopics.CUSTOMER_PURCHASE_SUMMARY, Produced.`with`(Serdes.stringSerde, Serdes.stringSerde))
     val topology = streamsBuilder.build()
+
     val kafkaStreams = new KafkaStreams(topology, properties)
     try {
       kafkaStreams.start()
