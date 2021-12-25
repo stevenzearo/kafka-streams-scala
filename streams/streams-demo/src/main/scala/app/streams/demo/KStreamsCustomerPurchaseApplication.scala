@@ -43,7 +43,7 @@ object KStreamsCustomerPurchaseApplication {
   }
 
   private def transferToSummary(s: String): String = {
-    val purchaseLine = Json.fromJson(Json.parse(s))(Json.reads[CustomerPurchaseLine]).get
+    val purchaseLine = Json.fromJson(Json.parse(s))(customerPurchaseLineReads).get
     val purchaseSummary = CustomerPurchaseSummary(UUID.randomUUID().toString, purchaseLine.customerId, purchaseLine.customerPurchaseItems.map(a => a.quantity * a.unitPrice).sum)
     Json.toJson(purchaseSummary)(Json.writes[CustomerPurchaseSummary]).toString()
   }

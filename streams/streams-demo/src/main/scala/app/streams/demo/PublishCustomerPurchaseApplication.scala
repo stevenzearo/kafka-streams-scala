@@ -25,7 +25,7 @@ object PublishCustomerPurchaseApplication {
     properties.putAll(value)
 
     val purchaseLines: List[CustomerPurchaseLine] = initPurchaseLine()
-    val purchaseLineStr = purchaseLines.map(line => Json.toJson(line)(Json.writes[CustomerPurchaseLine]).toString())
+    val purchaseLineStr = purchaseLines.map(line => Json.toJson(line)(customerPurchaseLineWrites).toString())
 
     val producer = new KafkaProducer[String, String](properties)
     try {
