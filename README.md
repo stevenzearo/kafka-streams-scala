@@ -13,3 +13,6 @@ A project of practices with kafka streams using scala
 | JDK | 11 |
 | Gradle | 6.7.0 |
 
+[Download Scala](https://www.scala-lang.org/download/scala2.html)  
+[Scala Documentation](https://docs.scala-lang.org/)  
+[Kafka Notes](./docs/basic/KafkaArch.md)
