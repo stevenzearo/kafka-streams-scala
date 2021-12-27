@@ -25,4 +25,4 @@ Since a single broker has limited storage capacity, Kafka allow to set log compa
 `log.cleanup.policy`. Kafka have a default value for this setting. We can set this value while creating a new topic,
 optional value as [compact, delete]. As to compact policy, Kafka will tag expired log value to null according to 
 timestamp, keep the latest log value, and then delete the null values.
-
+![kafka log compact](./resource/kafka_log_compact.png)
