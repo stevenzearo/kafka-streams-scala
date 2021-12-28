@@ -23,7 +23,7 @@ object KStreamsCustomerPurchaseApplication {
   def main(args: Array[String]): Unit = {
     val map = new util.HashMap[String, String]()
     map.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094")
-    map.put(StreamsConfig.APPLICATION_ID_CONFIG, "yelling-application-0001")
+    map.put(StreamsConfig.APPLICATION_ID_CONFIG, "customer-purchase-app-0001")
     val properties = new Properties()
     properties.putAll(map)
 
