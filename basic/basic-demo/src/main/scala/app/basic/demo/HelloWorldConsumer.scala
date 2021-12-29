@@ -29,10 +29,10 @@ object HelloWorldConsumer {
           println(s"fetched record{ topic:${r.topic()}, partition:${r.partition()},key:${r.key()}, value:{${r.value()}, offset:${r.offset()}, timestamp:${r.timestamp()}}")
         })
         consumer.commitAsync((offsets: util.Map[TopicPartition, OffsetAndMetadata], exception: Exception) => {
-          if (Option(exception).nonEmpty) {
+          if (Option(exception).nonEmpty)
             exception.printStackTrace()
-          }
-          offsets.forEach((k, v) => println(s"topic:${k.topic()}, offset:${v.offset()}"))
+          else
+            offsets.forEach((k, v) => println(s"topic:${k.topic()}, offset:${v.offset()}"))
         })
       }
     } finally {

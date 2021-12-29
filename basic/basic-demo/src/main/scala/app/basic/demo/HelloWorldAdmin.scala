@@ -20,7 +20,7 @@ object HelloWorldAdmin {
       createTopicsResult.values().forEach((k, v) => {
         v.whenComplete((v, e) => {
           if (Option(e).nonEmpty) e.printStackTrace()
-          println(s"Successfully create topic:$k")
+          else println(s"Successfully create topic:$k")
         })
       })
     } finally {

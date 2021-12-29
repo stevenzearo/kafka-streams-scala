@@ -22,7 +22,7 @@ object KCustomerPurchaseAdminApplication {
       val createTopicsResult = admin.createTopics(newTopics)
       createTopicsResult.values().forEach((k, v) => {
         v.whenComplete((v, e) => {
-          if (Option.apply(e).nonEmpty) e.printStackTrace()
+          if (Option(e).nonEmpty) e.printStackTrace()
           else println(s"Successfully create topic:$k")
         })
       })
