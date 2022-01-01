@@ -1,5 +1,6 @@
 package app.streams.demo
 
+import common.prototol.customer.KafkaTopics
 import common.prototol.customer.purchase._
 import common.prototol.customer.serialize.Serializer._
 import org.apache.kafka.streams.scala.kstream.{Consumed, Produced}

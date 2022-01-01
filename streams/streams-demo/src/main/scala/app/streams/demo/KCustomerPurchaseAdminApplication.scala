@@ -1,6 +1,6 @@
 package app.streams.demo
 
-import common.prototol.customer.purchase.KafkaTopics
+import common.prototol.customer.KafkaTopics
 import org.apache.kafka.clients.admin.{AdminClient, AdminClientConfig, NewTopic}
 
 import java.util

@@ -1,5 +1,6 @@
 package app.streams.demo
 
+import common.prototol.customer.KafkaTopics
 import common.prototol.customer.purchase._
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord, RecordMetadata}
 import org.apache.kafka.common.serialization.StringSerializer
