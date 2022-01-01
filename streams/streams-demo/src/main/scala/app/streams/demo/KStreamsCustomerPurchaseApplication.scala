@@ -1,25 +1,17 @@
 package app.streams.demo
 
 import common.prototol.customer.purchase._
+import common.prototol.customer.serialize.Serializer._
 import org.apache.kafka.streams.scala.kstream.{Consumed, Produced}
 import org.apache.kafka.streams.scala.serialization.Serdes
 import org.apache.kafka.streams.{KafkaStreams, StreamsBuilder, StreamsConfig}
-import play.api.libs.json.{Json, OWrites, Reads}
+import play.api.libs.json.Json
 
 import java.util
 import java.util.{Properties, UUID}
 
 
 object KStreamsCustomerPurchaseApplication {
-  implicit final val itemScaleReads: Reads[ItemScale] = Json.reads[ItemScale]
-  implicit final val customerPurchaseItemReads: Reads[CustomerPurchaseItem] = Json.reads[CustomerPurchaseItem]
-  implicit final val customerPurchaseLineReads: Reads[CustomerPurchaseLine] = Json.reads[CustomerPurchaseLine]
-  implicit final val customerPurchaseSummaryReads: Reads[CustomerPurchaseSummary] = Json.reads[CustomerPurchaseSummary]
-  implicit final val itemScaleWrites: OWrites[ItemScale] = Json.writes[ItemScale]
-  implicit final val customerPurchaseItemWrites: OWrites[CustomerPurchaseItem] = Json.writes[CustomerPurchaseItem]
-  implicit final val customerPurchaseLineWrites: OWrites[CustomerPurchaseLine] = Json.writes[CustomerPurchaseLine]
-  implicit final val customerPurchaseSummaryWrites: OWrites[CustomerPurchaseSummary] = Json.writes[CustomerPurchaseSummary]
-
   def main(args: Array[String]): Unit = {
     val map = new util.HashMap[String, String]()
     map.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094")

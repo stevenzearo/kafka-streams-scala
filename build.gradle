@@ -96,6 +96,8 @@ allprojects {
 
 configure(project(':common:protocol')) {
     dependencies {
+        implementation "com.typesafe.play:play-json_$SCALA_VERSION:$PLAY_JSON_VERSION"
+
         testImplementation "org.junit.jupiter:junit-jupiter:$JUNIT_VERSION"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$JUNIT_VERSION"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION"

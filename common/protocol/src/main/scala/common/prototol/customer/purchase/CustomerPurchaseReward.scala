@@ -1,12 +1,10 @@
 package common.prototol.customer.purchase
 
-import common.prototol.customer.reward.Reward
-
-case class CustomerPurchaseReward[T <: Reward](id: String, customerId: String, rewards: List[T])
+case class CustomerPurchaseReward(id: String, customerId: String, purchaseId: String, rewardId: String, rewardName: String, rewardAmount: Double)
 
 object CustomerPurchaseReward {
-  def apply[T <: Reward](id: String, customerId: String, rewards: List[T]): CustomerPurchaseReward[T] = new CustomerPurchaseReward(id, customerId, rewards)
+  def apply(id: String, customerId: String, purchaseId: String, rewardId: String, rewardName: String, rewardAmount: Double): CustomerPurchaseReward = new CustomerPurchaseReward(id, customerId, purchaseId, rewardId, rewardName, rewardAmount)
 
-  def unapply[T <: Reward](customerPurchaseReward: CustomerPurchaseReward[T]): Option[(String, String, List[T])]
-  = if (Option(customerPurchaseReward).isEmpty) None else Some((customerPurchaseReward.id, customerPurchaseReward.customerId, customerPurchaseReward.rewards))
+  def unapply(customerPurchaseReward: CustomerPurchaseReward): Option[(String, String, String, String, String, Double)]
+  = if (Option(customerPurchaseReward).isEmpty) None else Some((customerPurchaseReward.id, customerPurchaseReward.customerId, customerPurchaseReward.purchaseId, customerPurchaseReward.rewardId, customerPurchaseReward.rewardName, customerPurchaseReward.rewardAmount))
 }
