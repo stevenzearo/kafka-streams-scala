@@ -16,4 +16,4 @@ A project of practices with kafka streams using scala
 [Download Scala](https://www.scala-lang.org/download/scala2.html)  
 [Scala Documentation](https://docs.scala-lang.org/)  
 [Kafka Basic Notes](./docs/basic/kafkaArch.md)  
-[Kafka Streams Notes](./docs/streams/kafkaStreamsDemo.md)  
+[Kafka Streams Notes](./docs/streams/kafkaStreamsNotes.md)  
